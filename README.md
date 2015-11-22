@@ -6,4 +6,4 @@ Instalacija Arch linuxa v slovenščini. Navodilo:
 
 2.) loadkeys slovene
 
-3.)  wget http://www2.arnes.si/~fzganj/AIS_sl.sh && sh AIS_sl.sh
+3.)  https://github.com/puikonen/Arch-Linux/blob/master/AIS_sl.sh && sh AIS_sl.sh

@@ -25,6 +25,6 @@ Navodilo:
 
 2.) loadkeys slovene
 
-3.) https://raw.githubusercontent.com/puikonen/Arch-Linux/master/AIS_sl.sh && sh AIS_sl.sh
+3.) wget https://raw.githubusercontent.com/puikonen/Arch-Linux/master/AIS_sl.sh && sh AIS_sl.sh
 
 4.) sledi navodilom

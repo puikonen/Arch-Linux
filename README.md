@@ -19,8 +19,6 @@ LXDE + lxdm
 ENLIGHTENMENT + slim
 
 
-
-
 Navodilo:
 
 1.) Boot Arch linux CD

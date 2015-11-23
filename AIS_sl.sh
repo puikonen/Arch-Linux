@@ -431,7 +431,7 @@ genfstab -p /mnt | sed 's/rw,relatime,data=ordered/defaults,relatime/' >> /mnt/e
 echo "#!/bin/bash
 ################################################################
 # Kaj	    : skripta za namestitev Arch linux-a v slovenščini #
-# Verzija   : version 1.00                                     #
+# Verzija   : version 1.01                                     #
 # Avtor	    : Cooleech                                         #
 # Priredil  : puikonen                                         #
 # email     : cooleechATgmail.com; puikonen03ATgmail.com       #

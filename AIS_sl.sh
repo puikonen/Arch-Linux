@@ -256,7 +256,7 @@ echo -e "\n\e[36m **************************************************************
 \n\t$WhyThisScript!\n
 \t\e[31m* * * $Warning: $YourRisk * * *\n\e[0m
 \t$InfoGathering! \e[1;33m:)\e[0m\n\n
- $WhichKeyLayout?\n\n \e[36ms\e[0m = \e[36m$Slovenian\e[0m\t( SI ) <= default\n\n \e[36me\e[0m = \e[36m$English\e[0m\t( US )\n\n \e[36mo\e[0m = \e[36m$Other\e[0m\t( ?? )\n"
+ $WhichKeyLayout?\n\n \e[36ms\e[0m = \e[36m$Slovenian\e[0m\t( SI ) <= default\n\n \e[36me\e[0m = \e[36m$English\e[0m\t( US )\n\n \e[36mo\e[0m = \e[36m$Ostali\e[0m\t( ?? )\n"
 read RazporedTipk
 case "$RazporedTipk" in
 s*|"")
@@ -313,7 +313,7 @@ else
  Home=" Home: /dev/$Disk$HomePart"
 fi
 if [ "$SwapPart" = "" ]; then
- Swap=" Swap: ništa ( $NoSwapPart )"
+ Swap=" Swap: nič ( $NoSwapPart )"
 else
  Swap=" Swap: /dev/$Disk$SwapPart"
 fi
@@ -479,6 +479,10 @@ sed -i 's/www.pool.ntp.org iburst/www.pool.ntp.org/g' /etc/ntp.conf # Fix za lin
 echo -e \"\n Nastavljam čas...\"
 ntpd -qg
 hwclock -w
+ echo -e "[archlinuxfr]" >> /etc/pacman.conf 
+ echo -e "SigLevel = Never" >> /etc/pacman.conf 
+ echo -e "Server = http://repo.archlinux.fr/$(uname -m)" >> /etc/pacman.conf
+ pacman -Sy --noconfirm yaourt
 case \"$DEzaInst\" in
 k*|g*|m*|x*|l*|c*)
  echo -e \"\n Namestitev gnome-keyringa in teme gnome-themes-standard...\"

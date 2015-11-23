@@ -1,18 +1,38 @@
 #!/bin/bash
 ################################################################
 # Kaj	    : skripta za namestitev Arch linux-a v slovenščini #
-# Verzija   : version 1.01                                     #
+# Verzija   : version 1.02                                     #
 # Avtor	    : Cooleech                                         #
-# Priredil  : puikonen                                         #
+# Priredil  : puikonen03                                       #
 # email     : cooleechATgmail.com; puikonen03ATgmail.com       #
 # Licenca   : GPLv2                                            #
 ################################################################
 #==============================================================================#
 clear
-echo -e "\n \e[1;34mDobrodošli!\e[0m | \e[1;34mS pomočjo te skripte si boste, na vaš računalnik, namestili distribucijo Arch Linux\e[0m.\n\n \e[36mENTER\e[0m = \e[36mZačetek namestitve\e[0m\t\n\n \n"
-read Language
-Language="${Language,,}"
-case "$Language" in
+\n\n\n\
+echo -e "\033[0m\033[1;36m                   -\`               "
+echo -e "\033[0m\033[1;36m                  .o+\`             "   
+echo -e "\033[0m\033[1;36m                 \`ooo/                "
+echo -e "\033[0m\033[1;36m                \`+oooo:               "
+echo -e "\033[0m\033[1;36m               \`+oooooo:              "
+echo -e "\033[0m\033[1;36m               -+oooooo+:             "
+echo -e "\033[0m\033[1;36m             \`/:-:++oooo+:            "
+echo -e "\033[0m\033[1;36m            \`/++++/+++++++:           "
+echo -e "\033[0m\033[1;36m           \`/++++++++++++++:     \033[0m\033[31m               Dobrodošli!      "
+echo -e "\033[0m\033[1;36m          \`/+++o\033[0m\033[36moooooooo\033[0m\033[1;36moooo/\`    \e[0m  \e[1;34m  S pomočjo te skripte si boste,   "
+echo -e "\033[0m\033[36m         \033[0m\033[1;36m./\033[0m\033[36mooosssso++osssssso\033[0m\033[1;36m+\`              na vaš računalnik,    "
+echo -e "\033[0m\033[36m        .oossssso-\`\`\`\`/ossssss+\`           namestili distribucijo "
+echo -e "\033[0m\033[36m       -osssssso.      :ssssssso.          \033[0m\033[31m     Arch Linux\e . "
+echo -e "\033[0m\033[36m      :osssssss/        osssso+++.    "
+echo -e "\033[0m\033[36m     /ossssssss/        +ssssooo/-    "
+echo -e "\033[0m\033[36m   \`/ossssso+/:-        -:/+osssso+-  "
+echo -e "\033[0m\033[36m  \`+sso+:-\`                 \`.-/+oso: "
+echo -e "\033[0m\033[36m \`++:.                           \`-/+/ "
+echo -e "\033[0m\033[36m .\`                                 \`/ \n\n"
+echo -e "\e[36mENTER\e[0m = \e[36mZačetek namestitve\e[0m\t\n\n \n"
+read Zacetek
+Zacetek="${Zacetek,,}"
+case "$Zacetek" in
 *)
 EnterYourUsername="Vpišite svoje ( \e[36muporabniško\e[0m ) ime"
 Warning="OPOZORILO"
@@ -47,17 +67,7 @@ Welcome="Dobrodošli v poenostavljeno namestitev \e[1;36mArch Linuxa-a\e[0m"
 WhyThisScript="Ta skripta je narejena zato, da vam olajša namestitev Arch Linux-a"
 YourRisk="UPORABLJATE JO NA LASTNO ODGOVORNOST"
 InfoGathering="Za začetek potebujem nekaj informacij. Pa, začnimo!"
-WhichKeyLayout="Kateri razpored tipkovnice ( keyboard layout ) želite uporabljati"
-Slovenian="Slovenski"
-English="Angleški"
-Other="Ostali"
 Wrong="Nepravilno"
-SetSlovenian="Nastavljen je slovenski"
-SetAmerican="Nastavljen je angleški"
-KeyboardLayout="razpored tipkovnice"
-EnterKeyboardLayout="Vpišite razpored tipkovnice katerega želite uporabljati po namestitvi sistema"
-GermanEg="za nemški razpored"
-LayoutAfterInstall="Razpored tipkovnice po namestitvi bo nastavljen na"
 ToSkip="za preskok tega koraka pritisnite \e[1;32mEnter\e[0m"
 ToFormat="Želite \e[1;31mformatirati"
 Partition="particijo"
@@ -95,25 +105,7 @@ UnmountAllPart="Odklop vseh particij..."
 RebootIn="Ponoven zagon čez 5 sekund..."
 ;;
 esac
-X11Layouts="af al am ara at az ba bd be bg br brai bt bw by ca cd ch cm cn cz de dk ee epo es et fi fo fr gb ge gh gn gr hr hu ie il in iq ir is it jp ke kg kh kr kz la latam lk lt lv ma mao md me mk ml mm mn mt mv nec_vndr/jp ng nl no np ph pk pl pt ro rs ru se si sk sn sy th tj tm tr tw tz ua us uz vn za"
 #==============================================================================#
-function ENTER_KEYBOARD_LAYOUT {
-clear
-echo -e "\n $EnterKeyboardLayout\n\t( $Eg.\e[1;36m DE\e[0m $GermanEg )\n"
-read Layout
-Layout="${Layout,,}"
-case "$X11Layouts" in
-*$Layout*)
- echo -e "\n $LayoutAfterInstall \e[1;36m${Layout^^}\e[0m" && CONTINUE_OR_CANCEL
-;;
-*)
- echo -e "\n \e[31m*** $Error ***\e[0m\n\n $Wrong $KeyboardLayout!\n"
- sleep 2
- ENTER_KEYBOARD_LAYOUT
-;;
-esac
-}
-
 function USER_NAME {
 clear
 echo -e "\n $EnterYourUsername:\n"
@@ -201,7 +193,7 @@ echo -e "\n $ViewPartitions \e[1;33m/dev/$Disk\e[0m\n"
 lsblk /dev/$Disk
 echo -e "\n $EnterPartitionNumber / ( root )\n\t( $Without \e[1;33m/dev/$Disk\e[0m, $Eg. \e[36m 1 \e[0m):"
 read RootPart
-RootPart="${RootPart//'/dev/$Disk'/}" # Za svaki slučaj... :)
+RootPart="${RootPart//'/dev/$Disk'/}" 
 if [ "$RootPart" = "" ]; then
  clear
  echo -e "\n \e[1;31m* $Error *\e[0m\n\n Root $PartitionError!\n"
@@ -211,7 +203,7 @@ fi
 }
 
 function NET_DEVICE {
-ln -sf /dev/null /etc/udev/rules.d/80-net-name-slot.rules # Preimenuj omrežne naprave v "stara" imena
+ln -sf /dev/null /etc/udev/rules.d/80-net-name-slot.rules
 clear
 echo -e "\n $CheckInternet...\n"
 ping -c2 google.com
@@ -252,33 +244,12 @@ CONTINUE_OR_CANCEL
 #==============================================================================#
 setfont Lat2-Terminus16 # Nastavljam font 
 clear
-echo -e "\n\e[36m *******************************************************************************\n\t$Welcome \e[36mby \e[1;36mCooleech & madawc\e[0m\t\e[36m\n *******************************************************************************\e[0m
+echo -e "\n\e[36m *******************************************************************************\n\t\e[36m                     by \e[1;36mCooleech & puikonen03\e[0m\t\e[36m\n *******************************************************************************\e[0m
 \n\t$WhyThisScript!\n
 \t\e[31m* * * $Warning: $YourRisk * * *\n\e[0m
-\t$InfoGathering! \e[1;33m:)\e[0m\n\n
- $WhichKeyLayout?\n\n \e[36ms\e[0m = \e[36m$Slovenian\e[0m\t( SI ) <= default\n\n \e[36me\e[0m = \e[36m$English\e[0m\t( US )\n\n \e[36mo\e[0m = \e[36m$Ostali\e[0m\t( ?? )\n"
-read RazporedTipk
-case "$RazporedTipk" in
-s*|"")
+\t$InfoGathering! \e[1;33m:)\e[0m\n\n"
  loadkeys slovene # Nastavi tipkovnico na slovenski layout
- Layout="si"
- echo -e "\n \e[1;36mINFO:\e[0m $SetSlovenian (\e[1;36m SI \e[0m) $KeyboardLayout.\n" && CONTINUE_OR_CANCEL
-;;
-e*)
- loadkeys us # Nastavi tipkovnico na slovenski layout
- Layout="us"
- echo -e "\n \e[1;36mINFO:\e[0m $SetAmerican (\e[1;36m US \e[0m) $KeyboardLayout.\n" && CONTINUE_OR_CANCEL
-;;
-*)
- loadkeys slovene # Postavi tipkovnicu na američki layout
- Layout="?"
- echo -e "\n \e[1;36mINFO:\e[0m $SetSlovenian (\e[1;36m SI \e[0m) $KeyboardLayout.\n" && CONTINUE_OR_CANCEL
-;;
-esac
-clear
-if [ "$Layout" = "?" ]; then
- ENTER_KEYBOARD_LAYOUT
-fi
+ Layout="si" && CONTINUE_OR_CANCEL
 USER_NAME
 ENTER_USER_PASS
 ENTER_ROOT_PASS
@@ -306,7 +277,7 @@ d*|y*|"")
 esac
 echo -e "\n $EnterPartitionNumber swap\n\t( $Without \e[1;33m/dev/$Disk\e[0m, $ToSkip ):"
 read SwapPart
-SwapPart="${SwapPart//'/dev/$Disk'/}" # Za vsak slučaj... :)
+SwapPart="${SwapPart//'/dev/$Disk'/}" 
 if [ "$HomePart" = "" ]; then
  Home=" Home: /dev/$Disk$RootPart ( $NoSepHomePart )"
 else
@@ -320,8 +291,8 @@ fi
 clear
 echo -e "\n $EnterHostName \e[36marchlinux\e[0m ):\n"
 read ImeHosta
-ImeHosta="${ImeHosta// /}" # Ukloni razmake
-ImeHosta="${ImeHosta//'@'/AT}" # Zamjeni znak @
+ImeHosta="${ImeHosta// /}" 
+ImeHosta="${ImeHosta//'@'/AT}" 
 if [ "$ImeHosta" = "" ]; then
  ImeHosta="archlinux"
 fi
@@ -431,9 +402,9 @@ genfstab -p /mnt | sed 's/rw,relatime,data=ordered/defaults,relatime/' >> /mnt/e
 echo "#!/bin/bash
 ################################################################
 # Kaj	    : skripta za namestitev Arch linux-a v slovenščini #
-# Verzija   : version 1.01                                     #
+# Verzija   : version 1.02                                     #
 # Avtor	    : Cooleech                                         #
-# Priredil  : puikonen                                         #
+# Priredil  : puikonen03                                       #
 # email     : cooleechATgmail.com; puikonen03ATgmail.com       #
 # Licenca   : GPLv2                                            #
 ################################################################

@@ -1,7 +1,7 @@
 #!/bin/bash
 ################################################################
 # Kaj	    : skripta za namestitev Arch linux-a v slovenščini #
-# Verzija   : version 1.02                                     #
+# Verzija   : version 1.03                                     #
 # Avtor	    : Cooleech                                         #
 # Priredil  : puikonen03                                       #
 # email     : cooleechATgmail.com; puikonen03ATgmail.com       #
@@ -401,7 +401,7 @@ genfstab -p /mnt | sed 's/rw,relatime,data=ordered/defaults,relatime/' >> /mnt/e
 echo "#!/bin/bash
 ################################################################
 # Kaj	    : skripta za namestitev Arch linux-a v slovenščini #
-# Verzija   : version 1.02                                     #
+# Verzija   : version 1.03                                     #
 # Avtor	    : Cooleech                                         #
 # Priredil  : puikonen03                                       #
 # email     : cooleechATgmail.com; puikonen03ATgmail.com       #
@@ -449,6 +449,7 @@ sed -i 's/www.pool.ntp.org iburst/www.pool.ntp.org/g' /etc/ntp.conf # Fix za lin
 echo -e \"\n Nastavljam čas...\"
 ntpd -qg
 hwclock -w
+ echo -e " " >> /etc/pacman.conf 
  echo -e "[archlinuxfr]" >> /etc/pacman.conf 
  echo -e "SigLevel = Never" >> /etc/pacman.conf 
  echo -e "Server = http://repo.archlinux.fr/$(uname -m)" >> /etc/pacman.conf
@@ -563,7 +564,7 @@ e*)
 ;;
 p*)
  echo -e \"\n Začenjam namestitev PLASMA 5...\"
- pacman -Sy --noconfirm plasma-desktop sddm kdebase
+ pacman -Sy --noconfirm plasma-desktop sddm kdebase kde-l10n-sl plasma-nm 
  if [ \$? != 0 ]; then
   echo -e \"\n $Error *\n\n Pritisnite Enter za nadaljevanje...\n\"
   read -p \"\"
@@ -632,6 +633,11 @@ d*|y*)
  fi
  if [ -e /etc/lxdm/lxdm.conf ]; then
   sed -i 's/# autologin=dgod/autologin=$Uporabnik/g' /etc/lxdm/lxdm.conf
+ fi
+  if [ -d /usr/share/sddm ]; then
+  echo -e "[Autologin]" >> /etc/sddm.conf
+ echo -e "User=$Uporabnik" >> /etc/sddm.conf
+ echo -e "Session=plasma.desktop" >> /etc/sddm.conf
  fi
 ;;
 esac

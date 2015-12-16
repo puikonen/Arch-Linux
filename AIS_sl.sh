@@ -33,7 +33,7 @@ read Zacetek
 Zacetek="${Zacetek,,}"
 case "$Zacetek" in
 *)
-EnterYourUsername="Vpišite svoje ( \e[36muporabniško\e[0m ) ime"
+EnterYourUsername="Vpišite svoje izbrano \e[0m(uporabniško) \e[36mime"
 Warning="OPOZORILO"
 NoUsername="Niste vpisali uporabniškega imena"
 EnterUserPass="Vpišite uporabniško geslo"

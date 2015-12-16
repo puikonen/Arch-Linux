@@ -46,8 +46,8 @@ texlive="Ali želiš namestiti texlive"
 fonti="Ali želiš izboljšati glajenje pisave"
 tiskalnik="Ali želiš namestiti podporo za tiskalnike in SAMBO?"
 backup="Ali želiš povoziti nastavitve desktopa z osebnimi nastavitvami"
-EnterYourUsername="Vpišite svoje izbrano( \e[36muporabniško\e[0m ) ime"
-EnterWebSite="\e[36mVpišite naslov spletne strani, kjer imaš shranjene datoteke\033[0m\033[31m backup.tar.gz, stili.tar.gz \e[36min\033[0m\033[31m WindowsFonts.tar.gz"
+EnterYourUsername="Vpišite svoje izbrano \e[0m(uporabniško) \e[36mime"
+EnterWebSite="\e[36mVpišite naslov \e[0mspletne strani\e[36m, kjer imaš shranjene datoteke\033[0m\033[31m backup.tar.gz, stili.tar.gz \e[36min\033[0m\033[31m WindowsFonts.tar.gz"
 ContinueOrCancel="Pritisnite \e[1;32mEnter\e[0m za nadaljevanje ali \e[1;31mCtrl\e[0m + \e[1;31mC\e[0m za prekinitev namestitve"
 Warning="OPOZORILO"
 NoWebSite="Niste vpisali spletnega naslova"
@@ -168,8 +168,9 @@ do
 						<const>lcddefault</const>
 					</edit>
 				</match>
-			</fontconfig>" >> /home/$Uporabnik/.fonts.conf		
-			sleep 2 | echo -e "\e[36mGlajenje fontov je poboljšano. Prav tako so nameščeni \033[0m\033[31mWindows \e[36mfonti!"
+			</fontconfig>" >> /home/$Uporabnik/.fonts.conf
+			clear			
+			sleep 5 | echo -e "\e[36mGlajenje fontov je poboljšano. Prav tako so nameščeni \033[0m\033[31mWindows \e[36mfonti!\n\nZa uveljavitev sprememb se je potrebno \033[0m\033[31mponovno prijaviti \e[36mv namizje!"
 			clear
             ;;
 		5)	
